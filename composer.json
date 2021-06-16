@@ -1,6 +1,7 @@
 {
   "name": "salman-shafique/mautic-whatsapp-bundle",
   "type": "mautic-plugin",
+  "version": "1.0.4",
   "require": {
     "mautic/composer-plugin": "^1.0",
     "plivo/php-sdk": "^4.1.5"
