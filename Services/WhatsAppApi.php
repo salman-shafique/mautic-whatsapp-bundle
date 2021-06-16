@@ -9,11 +9,8 @@
  * @author      Jan Kozak <galvani78@gmail.com>
  */
 
-namespace MauticPlugin\MauticPlivoBundle\Services;
+namespace MauticPlugin\MauticWhatsAppBundle\Services;
 
-use libphonenumber\NumberParseException;
-use libphonenumber\PhoneNumberFormat;
-use libphonenumber\PhoneNumberUtil;
 use Guzzle\Http\Client;
 use Joomla\Http\Http;
 use Mautic\CoreBundle\Exception\BadConfigurationException;
@@ -26,7 +23,7 @@ use Monolog\Logger;
 use Plivo\Exceptions\PlivoRestException;
 use Plivo\RestClient;
 
-class PlivoApi extends AbstractSmsApi
+class WhatsAppApi extends AbstractSmsApi
 {
     /**
      * @var Client
@@ -84,21 +81,14 @@ class PlivoApi extends AbstractSmsApi
             return false;
         }
 
-        $integration = $this->integrationHelper->getIntegrationObject('Plivo');
+        $integration = $this->integrationHelper->getIntegrationObject('WhatsApp');
         if ($integration && $integration->getIntegrationSettings()->getIsPublished()) {
             $data   = $integration->getDecryptedApiKeys();
             $client = new RestClient($data['AUTH_ID'], $data['AUTH_TOKEN']);
-            
-            try {
-                $number = $this->sanitizeNumber($contact->getLeadPhoneNumber());
-            } catch (NumberParseException $exception) {
-                return $exception->getMessage();
-            }
-            
             try {
                 $response = $client->messages->create(
                     $data['sender_phone_number'],
-                    [$number],
+                    [$contact->getMobile()],
                     $content
                 );
 
@@ -113,20 +103,5 @@ class PlivoApi extends AbstractSmsApi
                 return false;
             }
         }
-    }
-        
-    /**
-     * @param string $number
-     *
-     * @return string
-     *
-     * @throws NumberParseException
-     */
-    private function sanitizeNumber($number)
-    {
-        $util = PhoneNumberUtil::getInstance();
-        $parsed = $util->parse($number, 'US');
-
-        return $util->format($parsed, PhoneNumberFormat::E164);
     }
 }

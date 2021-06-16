@@ -9,13 +9,13 @@
  * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace MauticPlugin\MauticPlivoBundle;
+namespace MauticPlugin\MauticWhatsAppBundle;
 
 use Mautic\PluginBundle\Bundle\PluginBundleBase;
 
 /**
- * Class MauticPlivoBundle.
+ * Class MauticWhatsAppBundle.
  */
-class MauticPlivoBundle extends PluginBundleBase
+class MauticWhatsAppBundle extends PluginBundleBase
 {
 }

@@ -1,5 +1,5 @@
 {
-  "name": "mtcextendee/mautic-plivo-bundle",
+  "name": "salman-shafique/mautic-whatsapp-bundle",
   "type": "mautic-plugin",
   "require": {
     "mautic/composer-plugin": "^1.0",

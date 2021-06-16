@@ -10,16 +10,16 @@
  * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace MauticPlugin\MauticPlivoBundle\Integration;
+namespace MauticPlugin\MauticWhatsAppBundle\Integration;
 
 use Mautic\PluginBundle\Integration\AbstractIntegration;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
- * Class PlivoIntegration.
+ * Class WhatsAppIntegration.
  */
-class PlivoIntegration extends AbstractIntegration
+class WhatsAppIntegration extends AbstractIntegration
 {
     /**
      * {@inheritdoc}
@@ -28,12 +28,12 @@ class PlivoIntegration extends AbstractIntegration
      */
     public function getName()
     {
-        return 'Plivo';
+        return 'WhatsApp';
     }
 
     public function getIcon()
     {
-        return 'plugins/MauticPlivoBundle/Assets/img/plivo.png';
+        return 'plugins/MauticWhatsAppBundle/Assets/img/whatsapp.png';
     }
 
     public function getSecretKeys()
@@ -49,9 +49,9 @@ class PlivoIntegration extends AbstractIntegration
     public function getRequiredKeyFields()
     {
         return [
-            'AUTH_ID'  => 'mautic.plugin.plivo.auth_id',
-            'AUTH_TOKEN' => 'mautic.plugin.plivo.auth_token',
-            'sender_phone_number' => 'mautic.plugin.plivo.sender.phone_number',
+            'AUTH_ID'  => 'mautic.plugin.whatsapp.auth_id',
+            'AUTH_TOKEN' => 'mautic.plugin.whatsapp.auth_token',
+            'sender_phone_number' => 'mautic.plugin.whatsapp.sender.phone_number',
         ];
     }
 

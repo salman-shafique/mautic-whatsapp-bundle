@@ -10,9 +10,9 @@
  */
 
 return [
-    'name'        => 'Plivo',
-    'description' => 'Plivo Sms integration',
-    'author'      => 'mtcextendee.com',
+    'name'        => 'WhatsApp',
+    'description' => 'WhatsApp Sms integration',
+    'author'      => 'salman.com',
     'version'     => '1.0.0',
     'services' => [
         'events'  => [],
@@ -20,8 +20,8 @@ return [
         ],
         'helpers' => [],
         'other'   => [
-            'mautic.sms.transport.plivo' => [
-                'class'     => \MauticPlugin\MauticPlivoBundle\Services\PlivoApi::class,
+            'mautic.sms.transport.whatsapp' => [
+                'class'     => \MauticPlugin\MauticWhatsAppBundle\Services\WhatsAppApi::class,
                 'arguments' => [
                     'mautic.page.model.trackable',
                     'mautic.helper.phone_number',
@@ -29,17 +29,35 @@ return [
                     'monolog.logger.mautic',
                     'mautic.http.connector'
                 ],
-                'alias' => 'mautic.sms.config.transport.plivo',
+                'alias' => 'mautic.sms.config.transport.whatsapp',
                 'tag'          => 'mautic.sms_transport',
                 'tagArguments' => [
-                    'integrationAlias' => 'Plivo',
+                    'integrationAlias' => 'WhatsApp',
                 ],
             ],
         ],
         'models'       => [],
         'integrations' => [
-            'mautic.integration.plivo' => [
-                'class' => \MauticPlugin\MauticPlivoBundle\Integration\PlivoIntegration::class,
+            'mautic.integration.whatsapp' => [
+                'class' => \MauticPlugin\MauticWhatsAppBundle\Integration\WhatsAppIntegration::class,
+                'arguments' => [
+                    'event_dispatcher',
+                    'mautic.helper.cache_storage',
+                    'doctrine.orm.entity_manager',
+                    'session',
+                    'request_stack',
+                    'router',
+                    'translator',
+                    'logger',
+                    'mautic.helper.encryption',
+                    'mautic.lead.model.lead',
+                    'mautic.lead.model.company',
+                    'mautic.helper.paths',
+                    'mautic.core.model.notification',
+                    'mautic.lead.model.field',
+                    'mautic.plugin.model.integration_entity',
+                    'mautic.lead.model.dnc',
+                ],
             ],
         ],
     ],
